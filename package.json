@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "Empty gulp sample for starting new projects",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.3.1",
+    "magnific-popup": "^1.1.0"
+  },
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-concat": "^2.6.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglifyjs": "^0.6.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
