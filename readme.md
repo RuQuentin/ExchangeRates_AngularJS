@@ -227,4 +227,93 @@ gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'scripts', 'browser-
 ```
 
 
-** BASIC GULP IS READY FOR USE **
+### 24. Add to `package.json` information about the repository of the project (optionally):
+
+```js
+"repository": {
+  "type": "git",
+  "url": "git://github.com/username/repository.git"
+}
+```
+
+### 25. Add short command to `package.json` for starting project as the following:
+
+```js
+"scripts": {
+  ...
+  "start": "gulp"
+}
+```
+
+
+** BASIC GULP IS READY FOR USE !!! **
+
+
+
+
+ESLINT configuration
+=====================
+
+
+### 1. Install `eslint` package globally (or locally):
+
+`npm install -g eslint --save-dev`
+
+
+
+### 2. Setup a configuration file:
+
+`./node_modules/.bin/eslint --init`
+
+After that answer the questions about your wishable configuration
+
+
+
+### 3. Install `airbnb` configuration globally (or locally):
+
+`npx install-peerdeps --dev eslint-config-airbnb`
+
+
+
+### 4. Create file .eslintignore in the root directory with the following content:
+
+```js
+/.git
+/.vscode
+node_modules
+```
+
+
+### 5. Now we're already able to run `eslint` by command:
+
+`./node_modules/.bin/eslint index.js`
+
+`index.js` - file for checking
+
+
+
+### 6. Add `script` command in `package.json` for easy running `eslint`:
+
+```js
+"scripts": {
+  ...
+  "lint": "eslint src/"
+}
+```
+
+
+### 7. Install `pre-commit` for ability to run some tasks before commiting:
+
+`npm install --save-dev pre-commit`
+
+
+
+### 8. Add `pre-commit` in `package.json` (as array):
+
+```js
+"pre-commit": [
+  "lint"
+]
+```
+
+** ESLINT IS READY FOR USE !!! **
