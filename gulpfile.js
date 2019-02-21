@@ -8,6 +8,7 @@ var uglify = require('gulp-uglifyjs');
 gulp.task('sass', function() {
   return gulp.src('src/scss/**/*.scss')
     .pipe(sass())
+    .pipe(concat('styles.min.css'))
     .pipe(gulp.dest('build/css'))
     .pipe(browserSync.reload({stream: true}))
 });
