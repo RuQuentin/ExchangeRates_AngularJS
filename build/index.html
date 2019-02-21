@@ -1,15 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.min.css">
   <script src="js/index.min.js"></script>
   <title>Document</title>
 </head>
 
 <body>
+  <div class="container">
+
+    <form class="exchange-form">
+
+      <div class="form-row">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          <label class="btn btn-secondary btn-buy-sell active">
+            <input type="radio" name="options" id="option1" autocomplete="off"
+              checked> Купить
+          </label>
+          <label class="btn btn-secondary btn-buy-sell">
+            <input type="radio" name="options" id="option2" autocomplete="off">
+            Продать
+          </label>
+        </div>
+
+        <div class="course">
+          <span class="course-info course-title">Курс</span>
+          <span class="course-info course-value">0.0000</span>
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="form-group w-43">
+          <label for="inputState">Отдаем</label>
+          <select id="inputState" class="form-control">
+            <option selected>Выберите валюту</option>
+            <option>...</option>
+          </select>
+        </div>
+
+        <div class="form-group w-12">
+          <button type="button" class="btn btn-secondary btn-sm w-100"><i
+              class="fas fa-exchange-alt"></i></button>
+        </div>
+
+        <div class="form-group  w-43">
+          <label for="inputState">Получаем</label>
+          <select id="inputState" class="form-control">
+            <option selected>Выберите валюту</option>
+            <option>...</option>
+          </select>
+        </div>
+      </div>
+
+
+      <div class="form-row">
+        <div class="form-group w-43">
+          <label for="formGroupExampleInput2">Сколько нужно обменять</label>
+          <input type="text" class="form-control" id="formGroupExampleInput2"
+            placeholder="0.00">
+        </div>
+
+        <div class="form-group w-12">
+          <label for="inputState"></label>
+          <select id="inputState" class="form-control">
+            <option selected>-1%</option>
+            <option>...</option>
+          </select>
+        </div>
+
+        <div class="form-group w-43">
+          <label for="formGroupExampleInput2">Сколько нужно получить</label>
+          <input type="text" class="form-control"
+            id="formGroupExampleInput2"
+            placeholder="0.00">
+        </div>
+      </div>
+    </form>
+
+  </div>
 
 </body>
+
 </html>
