@@ -1,0 +1,74 @@
+.container {
+  padding: 40px 0px;
+}
+
+.exchange-form {
+  width: 650px;
+  margin: 0 auto;
+  padding: 20px 20px 10px 20px;
+  border: 1px solid rgb(78, 85, 91);
+  border-radius: 5px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}
+
+.form-control {
+  padding-left: 5px;
+  font-size: 14px;
+  width: 100%;
+  overflow: visible;
+}
+
+.w-43 {
+  flex-basis: 43%;
+}
+
+.w-12 {
+  flex-basis: 12%;
+}
+
+.btn {
+  height: 35px;
+}
+
+.btn-buy-sell {
+  border: 1px solid rgb(78, 85, 91);
+  background-color: white;
+  color: rgb(78, 85, 91);
+  width: 90px;
+
+  &:active {
+    background-color: rgb(78, 85, 91);
+  }
+}
+
+.course {
+  border: 1px solid rgb(206, 212, 218);
+  border-radius: 5px;
+}
+.course-info {
+  display: inline-block;
+  width: 90px;
+  height: 35px;
+  padding: 6px 12px;
+  text-align: center;
+}
+
+.course-title {
+  // font-weight: 700;
+  color: rgb(33, 37, 41);
+}
+
+.course-value {
+  color: rgb(73, 80, 87);
+  font-size: 14px;
+}
