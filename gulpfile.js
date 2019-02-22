@@ -22,7 +22,7 @@ gulp.task('html', function() {
 gulp.task('scripts', function() {
   return gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('build/js'))
     .pipe(browserSync.reload({stream: true}))
 });

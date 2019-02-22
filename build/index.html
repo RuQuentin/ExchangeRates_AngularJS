@@ -21,7 +21,9 @@
 <body>
   <div class="container">
 
-    <form class="exchange-form">
+    <form class="exchange-form"
+      ng-app="currencyConverterApp"
+      ng-controller="currencyController">
 
       <div class="form-row">
         <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -70,7 +72,8 @@
         <div class="form-group w-43">
           <label for="formGroupExampleInput2">Сколько нужно обменять</label>
           <input type="text" class="form-control" id="formGroupExampleInput2"
-            placeholder="0.00">
+            placeholder="0.00" ng-model="$scope.value">
+            <p class="">{{$scope.value}}</p>
         </div>
 
         <div class="form-group w-12">
