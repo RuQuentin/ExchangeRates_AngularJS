@@ -1,4 +1,5 @@
-
 // for toggling buttons SELL / BUY
-$().button('toggle')
-$().button('dispose')
+
+// $().button('toggle')
+
+// $().button('dispose')
