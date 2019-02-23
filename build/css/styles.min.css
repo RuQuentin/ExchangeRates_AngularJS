@@ -15,6 +15,8 @@
   align-items: flex-end; }
   .form-row:not(:last-of-type) {
     margin-bottom: 20px; }
+  .form-row:first-of-type {
+    justify-content: flex-end; }
 
 .form-control {
   padding-left: 5px;
@@ -41,11 +43,13 @@
 
 .course {
   border: 1px solid #ced4da;
-  border-radius: 5px; }
+  border-radius: 5px;
+  background-color: #eee; }
 
-.course-info {
+.course-cell {
   display: inline-block;
-  width: 90px;
+  vertical-align: bottom;
+  width: 49%;
   height: 35px;
   padding: 6px 12px;
   text-align: center; }
@@ -56,3 +60,6 @@
 .course-value {
   color: #495057;
   font-size: 14px; }
+
+.light-grey {
+  background-color: #eee; }
