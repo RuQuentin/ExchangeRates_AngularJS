@@ -25,7 +25,7 @@ gulp.task('angular', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['src/js/userAngular/ng-app.js', 'src/js/userAngular/controller.js', 'src/js/userAngular/services.js', 'src/js/userAngular/filters.js'])
+  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js'])
     // gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
     // .pipe(uglify())
