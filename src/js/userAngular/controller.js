@@ -1,28 +1,29 @@
 (() => {
   const currencyConverterApp = angular.module('currencyConverterApp');
 
-  currencyConverterApp.controller('currencyController', ['$scope', function currencyController($scope) {
-    $scope.currencies = [
-      { name: 'USD', sellPrice: null, buyPrice: null },
-      { name: 'RUB', sellPrice: null, buyPrice: null },
-      { name: 'UAH', sellPrice: null, buyPrice: null },
-      { name: 'EUR', sellPrice: null, buyPrice: null },
-    ];
+  currencyConverterApp.controller('currencyController', ['$scope', 'currencyService', 'commissions', function currencyController($scope, currencyService, commissions) {
+    $scope.currencies = [];
+    $scope.commissions = commissions;
 
-    $scope.commissions = [0, 1, 2, 3, 4, 5];
-
-    $scope.currencyToSell = {};
-    $scope.currencyToBuy = {};
+    $scope.currencyToSell = null;
+    $scope.currencyToBuy = null;
     $scope.commission = null;
 
     $scope.crossPrice = null;
 
-    $scope.value = '0.00000';
+    $scope.value = 0;
 
-    $scope.rotateCurrencies = () => {
+    $scope.swapCurrencies = () => {
       [$scope.currencyToSell, $scope.currencyToBuy] = [$scope.currencyToBuy, $scope.currencyToSell];
     };
 
-    // console.log($scope)
+    $scope.disableAnotherInput = () => {
+    };
+
+    currencyService.updatePrices().then((response) => {
+      $scope.currencies = response.data;
+    });
+
+    // console.log($scope.currencies)
   }]);
 })();
