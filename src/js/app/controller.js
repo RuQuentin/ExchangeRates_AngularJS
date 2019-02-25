@@ -1,35 +1,22 @@
 (() => {
   const currencyConverterApp = angular.module('currencyConverterApp');
 
-  currencyConverterApp.controller('currencyController', ['$scope', 'currencyService', 'commissions', 'currencyUAH', function currencyController($scope, currencyService, commissions, currencyUAH) {
+  currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencyUAH', 'currencyService', function currencyController($scope, commissions, currencyUAH, currencyService) {
     $scope.currencies = [];
-    $scope.commissions = commissions;
-
     $scope.currencyToSell = {};
     $scope.currencyToBuy = {};
     $scope.crossPrice = null;
 
+    $scope.commissions = commissions;
+
+    currencyService.updatePrices().then((response) => {
+      $scope.currencies = response.data;
+      $scope.currencies.push(currencyUAH);
+    });
+
     $scope.calcCrossPrice = () => {
-      let ccyToSell = $scope.currencyToSell;
-      let ccyToBuy = $scope.currencyToBuy;
-
-      if (!ccyToSell || !ccyToBuy) return;
-
-      if (ccyToSell.base_ccy === ccyToBuy.ccy) {
-        $scope.crossPrice = +ccyToSell.buy;
-        return;
-      }
-
-      $scope.crossPrice = 1;
-
-      while (ccyToSell.ccy !== ccyToBuy.ccy) {
-        $scope.crossPrice = $scope.crossPrice * +ccyToSell.buy / ccyToBuy.sale;
-
-        // eslint-disable-next-line no-loop-func
-        ccyToSell = $scope.currencies.find(item => item.ccy === ccyToSell.base_ccy);
-        // eslint-disable-next-line no-loop-func
-        ccyToBuy = $scope.currencies.find(item => item.ccy === ccyToBuy.base_ccy);
-      }
+      // eslint-disable-next-line max-len
+      $scope.crossPrice = currencyService.calcCrossPrice($scope.currencyToSell, $scope.currencyToBuy, $scope.currencies);
     };
 
     $scope.setActive = (currency) => {
@@ -62,10 +49,5 @@
       $scope.sumToReceive = null;
       $scope.sumToPay = null;
     };
-
-    currencyService.updatePrices().then((response) => {
-      $scope.currencies = response.data;
-      $scope.currencies.push(currencyUAH);
-    });
   }]);
 })();
