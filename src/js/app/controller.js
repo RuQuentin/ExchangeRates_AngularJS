@@ -38,10 +38,12 @@
 
     $scope.calcSumToReceive = () => {
       $scope.sumToReceive = $scope.sumToPay * $scope.crossPrice * (1 - $scope.commission / 100);
+      $scope.sumToReceive = +$scope.sumToReceive.toFixed(2);
     };
 
     $scope.calcSumToPay = () => {
       $scope.sumToPay = $scope.sumToReceive / $scope.crossPrice / (1 - $scope.commission / 100);
+      $scope.sumToPay = +$scope.sumToPay.toFixed(2);
     };
 
     $scope.calcSums = () => {

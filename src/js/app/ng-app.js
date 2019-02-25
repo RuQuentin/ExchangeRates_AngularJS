@@ -1,5 +1,5 @@
 (() => {
-  const currencyConverterApp = angular.module('currencyConverterApp', ['ngSanitize']);
+  const currencyConverterApp = angular.module('currencyConverterApp', []);
 
   window.currencyConverterApp = currencyConverterApp;
 })();
