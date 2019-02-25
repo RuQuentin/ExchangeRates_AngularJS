@@ -19,6 +19,10 @@
   &:not(:last-of-type) {
     margin-bottom: 20px;
   }
+
+  &:first-of-type {
+    justify-content: flex-end;
+  }
 }
 
 .form-control {
@@ -54,10 +58,13 @@
 .course {
   border: 1px solid rgb(206, 212, 218);
   border-radius: 5px;
+  background-color: #eee;
 }
-.course-info {
+
+.course-cell {
   display: inline-block;
-  width: 90px;
+  vertical-align: bottom;
+  width: 49%;
   height: 35px;
   padding: 6px 12px;
   text-align: center;
@@ -71,4 +78,8 @@
 .course-value {
   color: rgb(73, 80, 87);
   font-size: 14px;
+}
+
+.light-grey {
+  background-color: #eee;
 }
