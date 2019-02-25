@@ -1,7 +1,8 @@
+/* eslint-disable func-names */
 (() => {
   const currencyConverterApp = angular.module('currencyConverterApp');
 
-  currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencyUAH', 'currencyService', function currencyController($scope, commissions, currencyUAH, currencyService) {
+  currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencyUAH', 'currencyService', function ($scope, commissions, currencyUAH, currencyService) {
     $scope.currencies = [];
     $scope.currencyToSell = {};
     $scope.currencyToBuy = {};
