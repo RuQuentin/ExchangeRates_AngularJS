@@ -19,10 +19,16 @@ gulp.task('html', function() {
     .pipe(browserSync.reload({stream: true}))
 });
 
+gulp.task('angular', function() {
+  return gulp.src(['src/js/lib/angular.min.js', 'src/js/lib/angular-sanitize.min.js'])
+    .pipe(gulp.dest('build/js'))
+});
+
 gulp.task('scripts', function() {
-  return gulp.src('src/js/**/*.js')
+  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js'])
+    // gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('build/js'))
     .pipe(browserSync.reload({stream: true}))
 });
@@ -44,4 +50,4 @@ gulp.task('watch', function() {
 })
 
 
-gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'scripts', 'browser-sync'))
+gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'angular', 'scripts', 'browser-sync'))

@@ -1,15 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="css/styles.min.css">
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-sanitize.min.js"></script>
   <script src="js/index.min.js"></script>
   <title>Document</title>
 </head>
 
 <body>
+  <div class="container">
 
+    <form class="exchange-form" ng-app="currencyConverterApp"
+      ng-controller="currencyController">
+
+      <div class="form-row">
+        <div class="course w-43">
+          <span class="course-cell course-title">Кросс-курс</span>
+          <span class="course-cell course-value">
+            {{ crossPrice | number: 4 }}</span>
+        </div>
+      </div>
+
+      <div class="form-row" ng-load="updatePrices()">
+        <div class="form-group w-43">
+          <label for="inputState">Отдаем</label>
+          <select class="form-control" ng-model="currencyToSell"
+            ng-change="calcCrossPrice(); calcSums()">
+            <option selected disabled ng-hide="true" value="">Выберите валюту
+            </option>
+            <option
+              ng-repeat="currency in currencies | filterCurrencies:currencyToBuy"
+              ng-value="currency" ng-class-even="'light-grey'">
+              {{ currency.ccy }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group w-12">
+          <button type="button" class="btn btn-secondary btn-sm w-100"
+            ng-click="swapCurrencies(); calcCrossPrice(); clearSums()"><i
+              class="fas fa-exchange-alt"></i></button>
+        </div>
+
+        <div class="form-group  w-43">
+          <label for="inputState">Получаем</label>
+          <select class="form-control" ng-model="currencyToBuy"
+            ng-change="calcCrossPrice(); calcSums()">
+            <option selected disabled ng-hide="true" value="">Выберите валюту
+            </option>
+            <option
+              ng-repeat="currency in currencies | filterCurrencies:currencyToSell"
+              ng-value="currency" ng-class-even="'light-grey'">
+              {{ currency.ccy }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group w-43">
+          <label for="formGroupExampleInput2">Сколько нужно обменять</label>
+          <input type="text" class="form-control" ng-model="sumToPay"
+            ng-focus="setActive(currencyToSell)" ng-change="calcSumToReceive()">
+        </div>
+
+        <div class="form-group w-12">
+          <label for="inputState"></label>
+          <select class="form-control" ng-model="commission"
+            ng-change="calcSums()">
+            <option selected disabled ng-hide="true" value="">0 %</option>
+            <option ng-repeat="item in commissions" ng-value="item"
+              ng-class-even="'light-grey'">
+              {{ item }} %</option>
+          </select>
+        </div>
+
+        <div class="form-group w-43">
+          <label for="formGroupExampleInput2">Сколько нужно получить</label>
+          <input type="text" class="form-control" ng-model="sumToReceive"
+            ng-focus="setActive(currencyToReceive)" ng-change="calcSumToPay()">
+        </div>
+      </div>
+    </form>
+
+  </div>
 </body>
+
 </html>
