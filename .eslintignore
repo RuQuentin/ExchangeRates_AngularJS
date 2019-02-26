@@ -2,5 +2,5 @@
 /.vscode
 node_modules
 
-src/js/lib
+src/lib
 gulpfile.js

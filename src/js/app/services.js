@@ -7,19 +7,23 @@
 
   currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
 
-  currencyConverterApp.value('currencyUAH', {
+  currencyConverterApp.value('currencies', [{
     ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1,
-  });
+  }]);
 
-  currencyConverterApp.service('currencyService', ['$http', 'urlPrivate', function ($http, urlPrivate) {
-    this.updatePrices = () =>
+  currencyConverterApp.service('currencyService', ['$http', 'urlPrivate', 'currencies', function ($http, urlPrivate, currencies) {
+    this.updatePrices = () => {
       $http({
         method: 'GET',
         url: urlPrivate,
-      });
+      })
+        .then((response) => {
+          currencies.push(...response.data);
+        });
+    };
 
 
-    this.calcCrossPrice = (currencyToSell, currencyToBuy, currencies) => {
+    this.calcRate = (currencyToSell, currencyToBuy) => {
       let ccyToSell = currencyToSell;
       let ccyToBuy = currencyToBuy;
 

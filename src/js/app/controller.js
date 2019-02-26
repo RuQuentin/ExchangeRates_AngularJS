@@ -2,45 +2,33 @@
 (() => {
   const currencyConverterApp = angular.module('currencyConverterApp');
 
-  currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencyUAH', 'currencyService', function ($scope, commissions, currencyUAH, currencyService) {
-    $scope.currencies = [];
+  currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencies', 'currencyService', function ($scope, commissions, currencies, currencyService) {
+    $scope.currencies = currencies;
     $scope.currencyToSell = {};
     $scope.currencyToBuy = {};
     $scope.crossPrice = null;
 
     $scope.commissions = commissions;
 
-    currencyService.updatePrices().then((response) => {
-      $scope.currencies = response.data;
-      $scope.currencies.push(currencyUAH);
-    });
+    currencyService.updatePrices();
 
     $scope.calcCrossPrice = () => {
-      // eslint-disable-next-line max-len
-      $scope.crossPrice = currencyService.calcCrossPrice($scope.currencyToSell, $scope.currencyToBuy, $scope.currencies);
+      $scope.crossPrice = currencyService.calcRate($scope.currencyToSell, $scope.currencyToBuy);
     };
 
     $scope.setActive = (currency) => {
       $scope.currencyActive = currency;
     };
 
-    $scope.calcSumToReceive = () => {
-      $scope.sumToReceive = $scope.sumToPay * $scope.crossPrice * (1 - $scope.commission / 100);
-      $scope.sumToReceive = +$scope.sumToReceive.toFixed(2);
-    };
-
-    $scope.calcSumToPay = () => {
-      $scope.sumToPay = $scope.sumToReceive / $scope.crossPrice / (1 - $scope.commission / 100);
-      $scope.sumToPay = +$scope.sumToPay.toFixed(2);
-    };
-
-    $scope.calcSums = () => {
+    $scope.$watchGroup(['sumToPay', 'sumToReceive', 'currencyToSell', 'currencyToBuy', 'commission'], () => {
       if ($scope.currencyActive === $scope.currencyToSell) {
-        $scope.calcSumToReceive();
+        $scope.sumToReceive = $scope.sumToPay * $scope.crossPrice * (1 - $scope.commission / 100);
+        $scope.sumToReceive = +$scope.sumToReceive.toFixed(2);
       } else {
-        $scope.calcSumToPay();
+        $scope.sumToPay = $scope.sumToReceive / $scope.crossPrice / (1 - $scope.commission / 100);
+        $scope.sumToPay = +$scope.sumToPay.toFixed(2);
       }
-    };
+    });
 
     $scope.swapCurrencies = () => {
       [$scope.currencyToSell, $scope.currencyToBuy] = [$scope.currencyToBuy, $scope.currencyToSell];
