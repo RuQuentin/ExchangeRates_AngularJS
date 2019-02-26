@@ -5,20 +5,22 @@
 
   currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencies', 'currencyService', 'deal', function ($scope, commissions, currencies, currencyService, deal) {
     $scope.currencies = currencies;
-    $scope.currencyToSell = {};
-    $scope.currencyToBuy = {};
-    $scope.crossPrice = null;
-
-
     $scope.deal = deal;
-
-    $scope.commissions = commissions;
+    // $scope.currencyToSell = {};
+    // $scope.currencyToBuy = {};
+    // $scope.crossPrice = null;
 
     currencyService.updatePrices();
 
-    $scope.calcCrossPrice = () => {
-      $scope.crossPrice = currencyService.calcRate();
-    };
+
+    $scope.$watchGroup([() => $scope.deal.ccyToExchange.name, () => $scope.deal.ccyToReceipt.name], () => currencyService.calcRate());
+
+    $scope.commissions = commissions;
+
+
+    // $scope.calcRate = () => {
+    //   currencyService.calcRate();
+    // };
 
     // $scope.setActive = (currency) => {
     //   $scope.currencyActive = currency;

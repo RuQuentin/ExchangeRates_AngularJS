@@ -28,15 +28,15 @@
           <div class="course w-43">
             <span class="course-cell course-title">Cross-rate</span>
             <span class="course-cell course-value">
-              {{ crossPrice | number: 4 }}</span>
+              {{ deal.crossRate | number: 4 }}</span>
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group w-43">
             <label for="inputState">Give</label>
-            <select class="form-control" ng-model="deal.ssyToExchange.name"
-              ng-options="currency.ccy for currency in currencies"
+            <select class="form-control" ng-model="deal.ccyToExchange.name"
+              ng-options="currency.ccy as currency.ccy for currency in currencies"
               ng-change="">
               <option selected disabled value="">Choose a currency to exchange...
               </option>
@@ -52,16 +52,11 @@
           <div class="form-group  w-43">
             <label for="inputState">Receipt</label>
             <select class="form-control"
-              ng-model="deal.ssyToReceipt.name"
-              ng-options="currency.ccy for currency in currencies"
+              ng-model="deal.ccyToReceipt.name"
+              ng-options="currency.ccy as currency.ccy for currency in currencies"
               ng-change="">
               <option selected disabled value="">Choose a currency to receipt...
           </option>
-              <!-- <option
-          ng-repeat="currency in currencies | filterCurrencies:currencyToSell"
-          ng-value="currency" ng-class-even="'light-grey'">
-          {{ currency.ccy }}
-        </option> -->
             </select>
           </div>
         </div>
@@ -76,12 +71,8 @@
 
           <div class="form-group w-12">
             <label for="inputState"></label>
-            <select class="form-control" ng-model="commission"
-              ng-change="">
-              <option selected disabled ng-hide="true" value="">0 %</option>
-              <option ng-repeat="item in commissions" ng-value="item"
-                ng-class-even="'light-grey'">
-                {{ item }} %</option>
+            <select class="form-control" ng-model="deal.commission"
+              ng-options="key for (key, value) in commissions">
             </select>
           </div>
 
