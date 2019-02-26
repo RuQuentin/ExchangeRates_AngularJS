@@ -5,36 +5,19 @@
 
   currencyConverterApp.controller('currencyController', ['$scope', 'commissions', 'currencies', 'currencyService', 'deal', function ($scope, commissions, currencies, currencyService, deal) {
     $scope.currencies = currencies;
+    $scope.commissions = commissions;
     $scope.deal = deal;
-    // $scope.currencyToSell = {};
-    // $scope.currencyToBuy = {};
-    // $scope.crossPrice = null;
+    $scope.swapCurrencies = currencyService.swapCurrencies;
+    $scope.setActiveCurrency = currencyService.setActiveCurrency;
 
     currencyService.updatePrices();
 
 
-    $scope.$watchGroup([() => $scope.deal.ccyToExchange.name, () => $scope.deal.ccyToReceipt.name], () => currencyService.calcRate());
+    $scope.$watchGroup([() => deal.ccyToExchange.name, () => deal.ccyToReceipt.name], () => {
+      currencyService.calcRate();
+      currencyService.updateSums();
+    });
 
-    $scope.commissions = commissions;
-
-
-    // $scope.calcRate = () => {
-    //   currencyService.calcRate();
-    // };
-
-    // $scope.setActive = (currency) => {
-    //   $scope.currencyActive = currency;
-    // };
-
-    // $scope.$watchGroup(['sumToPay', 'sumToReceive', 'currencyToSell', 'currencyToBuy', 'commission'], currencyService.updateSums(sumToPay, sumToReceive, currencyToSell, currencyToBuy, commission));
-
-    // $scope.swapCurrencies = () => {
-    //   [$scope.currencyToSell, $scope.currencyToBuy] = [$scope.currencyToBuy, $scope.currencyToSell];
-    // };
-
-    // $scope.clearSums = () => {
-    //   $scope.sumToReceive = null;
-    //   $scope.sumToPay = null;
-    // };
+    $scope.$watchGroup([() => deal.ccyToExchange.sum, () => deal.ccyToReceipt.sum, () => deal.commission], currencyService.updateSums);
   }]);
 })();

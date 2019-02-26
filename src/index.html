@@ -19,11 +19,13 @@
 </head>
 
 <body>
-  <div class="container" ng-app="currencyConverterApp">
+  <div class="container"
+    ng-app="currencyConverterApp">
 
-    <div class="" ng-controller="currencyController">
+    <div
+    ng-controller="currencyController">
+
       <form class="exchange-form">
-
         <div class="form-row">
           <div class="course w-43">
             <span class="course-cell course-title">Cross-rate</span>
@@ -35,28 +37,29 @@
         <div class="form-row">
           <div class="form-group w-43">
             <label for="inputState">Give</label>
-            <select class="form-control" ng-model="deal.ccyToExchange.name"
-              ng-options="currency.ccy as currency.ccy for currency in currencies"
-              ng-change="">
-              <option selected disabled value="">Choose a currency to exchange...
+            <select class="form-control"
+              ng-model="deal.ccyToExchange.name"
+              ng-options="currency.ccy as currency.ccy for currency in currencies">
+              <option selected disabled value="">Choose a currency to
+                exchange...
               </option>
             </select>
           </div>
 
           <div class="form-group w-12">
             <button type="button" class="btn btn-secondary btn-sm w-100"
-              ng-click=""><i
-                class="fas fa-exchange-alt"></i></button>
+              ng-click="swapCurrencies()">
+              <i class="fas fa-exchange-alt"></i>
+            </button>
           </div>
 
           <div class="form-group  w-43">
             <label for="inputState">Receipt</label>
             <select class="form-control"
               ng-model="deal.ccyToReceipt.name"
-              ng-options="currency.ccy as currency.ccy for currency in currencies"
-              ng-change="">
+              ng-options="currency.ccy as currency.ccy for currency in currencies">
               <option selected disabled value="">Choose a currency to receipt...
-          </option>
+              </option>
             </select>
           </div>
         </div>
@@ -64,23 +67,24 @@
         <div class="form-row">
           <div class="form-group w-43">
             <label for="formGroupExampleInput2">Sum to exchange</label>
-            <input type="number" class="form-control" ng-model="deal.ccyToExchange.sum"
-              ng-focus=""
-              ng-change="">
+            <input type="number" class="form-control"
+              ng-model="deal.ccyToExchange.sum"
+              ng-focus="setActiveCurrency(deal.ccyToExchange)">
           </div>
 
           <div class="form-group w-12">
             <label for="inputState"></label>
-            <select class="form-control" ng-model="deal.commission"
+            <select class="form-control"
+              ng-model="deal.commission"
               ng-options="key for (key, value) in commissions">
             </select>
           </div>
 
           <div class="form-group w-43">
             <label for="formGroupExampleInput2">Sum to receipt</label>
-            <input type="number" class="form-control" ng-model="deal.ccyToReceipt.sum"
-              ng-focus=""
-              ng-change="">
+            <input type="number" class="form-control"
+              ng-model="deal.ccyToReceipt.sum"
+              ng-focus="setActiveCurrency(deal.ccyToReceipt)">
           </div>
         </div>
       </form>

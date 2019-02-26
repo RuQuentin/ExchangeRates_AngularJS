@@ -14,13 +14,16 @@
     '5%': 5,
   });
 
+
   currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+
 
   currencyConverterApp.value('currencies', {
     UAH: {
       ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1,
     },
   });
+
 
   currencyConverterApp.value('deal', {
     ccyToExchange: {
@@ -33,7 +36,9 @@
     },
     crossRate: 1,
     commission: 0,
+    active: null,
   });
+
 
   currencyConverterApp.service('currencyService', ['$http', 'urlPrivate', 'currencies', 'deal', function ($http, urlPrivate, currencies, deal) {
     this.updatePrices = () => {
@@ -74,14 +79,24 @@
     };
 
 
-    // this.updateSums = () => {
-    //   if ($scope.currencyActive === $scope.currencyToSell) {
-    //     $scope.sumToReceive = $scope.sumToPay * $scope.crossPrice * (1 - $scope.commission / 100);
-    //     $scope.sumToReceive = +$scope.sumToReceive.toFixed(2);
-    //   } else {
-    //     $scope.sumToPay = $scope.sumToReceive / $scope.crossPrice / (1 - $scope.commission / 100);
-    //     $scope.sumToPay = +$scope.sumToPay.toFixed(2);
-    //   }
-    // };
+    this.swapCurrencies = () => {
+      [deal.ccyToExchange, deal.ccyToReceipt] = [deal.ccyToReceipt, deal.ccyToExchange];
+    };
+
+
+    this.setActiveCurrency = (currency) => {
+      deal.active = currency;
+    };
+
+
+    this.updateSums = () => {
+      if (deal.active === deal.ccyToExchange) {
+        deal.ccyToReceipt.sum = deal.ccyToExchange.sum * deal.crossRate * (1 - deal.commission / 100);
+        deal.ccyToReceipt.sum = +deal.ccyToReceipt.sum.toFixed(2);
+      } else {
+        deal.ccyToExchange.sum = deal.ccyToReceipt.sum / deal.crossRate / (1 - deal.commission / 100);
+        deal.ccyToExchange.sum = +deal.ccyToExchange.sum.toFixed(2);
+      }
+    };
   }]);
 })();
