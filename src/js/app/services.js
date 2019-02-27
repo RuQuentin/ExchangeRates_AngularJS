@@ -13,9 +13,6 @@
   });
 
 
-  // currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
-
-
   currencyConverterApp.value('currencies', {
     UAH: {
       ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1,
