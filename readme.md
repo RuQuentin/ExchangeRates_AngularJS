@@ -26,3 +26,10 @@ You may see cross-rate in the top right corner of the form.
 Commission
 -----------------------------------
 You may set a commission rate from 0% to 5%, which be applied during conversion.
+
+
+Use it for free
+-----------------------------------
+You may use this currency converter for free by the following link:
+
+https://ruquentin.github.io/ExchangeRates_AngularJS/build/
