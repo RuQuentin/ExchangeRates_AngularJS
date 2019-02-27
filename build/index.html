@@ -39,7 +39,7 @@
             <label for="inputState">Give</label>
             <select class="form-control"
               ng-model="deal.ccyToExchange.name"
-              ng-options="currency.ccy as currency.ccy for currency in currencies">
+              ng-options="key as key for (key, value) in currencies">
               <option selected disabled value="">Choose a currency to
                 exchange...
               </option>
@@ -57,7 +57,7 @@
             <label for="inputState">Receipt</label>
             <select class="form-control"
               ng-model="deal.ccyToReceipt.name"
-              ng-options="currency.ccy as currency.ccy for currency in currencies">
+              ng-options="key as key for (key, value) in currencies">
               <option selected disabled value="">Choose a currency to receipt...
               </option>
             </select>

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
 /* eslint-disable implicit-arrow-linebreak */
@@ -90,12 +89,14 @@
 
 
     this.updateSums = () => {
+      const { ccyToReceipt, ccyToExchange } = deal;
+
       if (deal.active === deal.ccyToExchange) {
-        deal.ccyToReceipt.sum = deal.ccyToExchange.sum * deal.crossRate * (1 - deal.commission / 100);
-        deal.ccyToReceipt.sum = +deal.ccyToReceipt.sum.toFixed(2);
+        ccyToReceipt.sum = ccyToExchange.sum * deal.crossRate * (1 - deal.commission / 100);
+        ccyToReceipt.sum = +ccyToReceipt.sum.toFixed(2);
       } else {
-        deal.ccyToExchange.sum = deal.ccyToReceipt.sum / deal.crossRate / (1 - deal.commission / 100);
-        deal.ccyToExchange.sum = +deal.ccyToExchange.sum.toFixed(2);
+        ccyToExchange.sum = ccyToReceipt.sum / deal.crossRate / (1 - deal.commission / 100);
+        ccyToExchange.sum = +ccyToExchange.sum.toFixed(2);
       }
     };
   }]);
