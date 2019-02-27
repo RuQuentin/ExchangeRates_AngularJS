@@ -14,8 +14,14 @@ gulp.task('sass', function() {
 });
 
 gulp.task('html', function() {
-  return gulp.src('src/index.html')
+  return gulp.src(['src/index.html'])
     .pipe(gulp.dest('build'))
+    .pipe(browserSync.reload({stream: true}))
+});
+
+gulp.task('templates', function() {
+  return gulp.src(['src/templates/*.html'])
+    .pipe(gulp.dest('build/templates/'))
     .pipe(browserSync.reload({stream: true}))
 });
 
@@ -25,7 +31,7 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js'])
+  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js', 'src/js/components/currencyConverter.js'])
     // gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
     // .pipe(uglify())
@@ -46,8 +52,9 @@ gulp.task('browser-sync', function() {
 gulp.task('watch', function() {
   gulp.watch('src/scss/**/*.scss', gulp.parallel('sass'));
   gulp.watch('src/index.html', gulp.parallel('html'));
+  gulp.watch('src/templates.*.htlm', gulp.parallel('templates'));
   gulp.watch('src/js/**/*.js', gulp.parallel('scripts'));
 })
 
 
-gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'vendor', 'scripts', 'browser-sync'))
+gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'vendor', 'scripts', 'templates', 'browser-sync'))
