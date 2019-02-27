@@ -19,8 +19,8 @@ gulp.task('html', function() {
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('angular', function() {
-  return gulp.src(['src/js/lib/angular.min.js', 'src/js/lib/angular-sanitize.min.js'])
+gulp.task('vendor', function() {
+  return gulp.src(['src/lib/angular.min.js'])
     .pipe(gulp.dest('build/js'))
 });
 
@@ -50,4 +50,4 @@ gulp.task('watch', function() {
 })
 
 
-gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'angular', 'scripts', 'browser-sync'))
+gulp.task('default', gulp.parallel('watch', 'sass', 'html', 'vendor', 'scripts', 'browser-sync'))
