@@ -1,9 +1,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable func-names */
 /* eslint-disable implicit-arrow-linebreak */
-(() => {
+(function () {
   const currencyConverterApp = angular.module('currencyConverterApp');
-
   currencyConverterApp.value('commissions', {
     '0%': 0,
     '1%': 1,
@@ -100,4 +99,4 @@
       }
     };
   }]);
-})();
+}());
