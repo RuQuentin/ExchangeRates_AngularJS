@@ -31,7 +31,7 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js', 'src/js/components/currencyConverter.js'])
+  return gulp.src(['src/js/app/index.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js', 'src/js/components/currencyConverter.js'])
     // gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
     // .pipe(uglify())

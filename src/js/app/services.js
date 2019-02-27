@@ -13,7 +13,7 @@
   });
 
 
-  currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+  // currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
 
 
   currencyConverterApp.value('currencies', {
@@ -46,12 +46,12 @@
       API = apiUrl;
     };
 
-    this.$get = ['$http', 'urlPrivate', 'currencies', 'deal', function ($http, urlPrivate, currencies, deal) {
+    this.$get = ['$http', 'currencies', 'deal', function ($http, currencies, deal) {
       return {
         updatePrices: () => {
           $http({
             method: 'GET',
-            url: urlPrivate,
+            url: API,
           })
             .then((response) => {
               response.data.forEach((item) => {
