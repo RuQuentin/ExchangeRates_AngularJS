@@ -1,5 +1,6 @@
 # CUSTOM
 build/
+.vscode/
 
 # Logs
 logs
