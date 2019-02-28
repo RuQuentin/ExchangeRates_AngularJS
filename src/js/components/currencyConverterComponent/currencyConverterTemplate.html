@@ -1,4 +1,4 @@
-<!-- <div ng-controller="currencyController"> -->
+<div>
 
   <form class="exchange-form">
     <div class="form-row">
@@ -14,7 +14,7 @@
         <label for="inputState">Give</label>
         <select class="form-control"
           ng-model="deal.ccyToExchange.name"
-          ng-options="key as key for (key, value) in currencies">
+          ng-options="key as key for (key, value) in currencies | filterCurrencies:deal.ccyToReceipt.name">
           <option selected disabled value="">Choose a currency to
             exchange...
           </option>
@@ -32,7 +32,7 @@
         <label for="inputState">Receipt</label>
         <select class="form-control"
           ng-model="deal.ccyToReceipt.name"
-          ng-options="key as key for (key, value) in currencies">
+          ng-options="key as key for (key, value) in currencies | filterCurrencies:deal.ccyToExchange.name">
           <option selected disabled value="">Choose a currency to receipt...
           </option>
         </select>
@@ -63,4 +63,4 @@
       </div>
     </div>
   </form>
-<!-- </div> -->
+</div>

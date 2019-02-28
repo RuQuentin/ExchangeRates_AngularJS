@@ -3,7 +3,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 (function () {
   const currencyConverterApp = angular.module('currencyConverterApp');
-  currencyConverterApp.value('commissions', {
+  currencyConverterApp.constant('commissions', {
     '0%': 0,
     '1%': 1,
     '2%': 2,
@@ -13,14 +13,14 @@
   });
 
 
-  currencyConverterApp.value('currencies', {
+  currencyConverterApp.constant('currencies', {
     UAH: {
       ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1,
     },
   });
 
 
-  currencyConverterApp.value('deal', {
+  currencyConverterApp.constant('deal', {
     ccyToExchange: {
       name: null,
       sum: null,
