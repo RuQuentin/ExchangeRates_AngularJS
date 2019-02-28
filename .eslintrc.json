@@ -9,7 +9,8 @@
     "extends": "airbnb",
     "globals": {
         "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+        "SharedArrayBuffer": "readonly",
+        "angular": "readonly"
     },
     "parserOptions": {
         "ecmaFeatures": {
@@ -22,5 +23,6 @@
         "react"
     ],
     "rules": {
+        "linebreak-style": ["error", "windows"]
     }
 }
