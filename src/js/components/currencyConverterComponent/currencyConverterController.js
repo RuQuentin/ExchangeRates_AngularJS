@@ -9,7 +9,8 @@
     $scope.swapCurrencies = currencyService.swapCurrencies;
     $scope.setActiveCurrency = currencyService.setActiveCurrency;
 
-    currencyService.updatePrices();
+    // currencyService.updatePrices();
+
 
     $scope.$watchGroup([
       () => deal.ccyToExchange.name,

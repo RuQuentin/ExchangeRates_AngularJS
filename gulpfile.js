@@ -6,7 +6,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglifyjs');
 
 gulp.task('sass', function() {
-  return gulp.src('src/scss/**/*.scss')
+  return gulp.src('src/**/*.scss')
     .pipe(sass())
     .pipe(concat('styles.min.css'))
     .pipe(gulp.dest('build/css'))
@@ -20,8 +20,8 @@ gulp.task('html', function() {
 });
 
 gulp.task('templates', function() {
-  return gulp.src(['src/templates/*.html'])
-    .pipe(gulp.dest('build/templates/'))
+  return gulp.src(['src/js/components/**/*.html'])
+    .pipe(gulp.dest('build/components/'))
     .pipe(browserSync.reload({stream: true}))
 });
 
@@ -31,7 +31,10 @@ gulp.task('vendor', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src(['src/js/app/ng-app.js', 'src/js/app/controller.js', 'src/js/app/services.js', 'src/js/app/filters.js', 'src/js/components/currencyConverter.js'])
+  return gulp.src([
+  'src/js/index.js',
+  'src/js/components/**/*.js',
+  'src/js/directives/**/*.js'])
     // gulp.src('src/js/**/*.js')
     .pipe(concat('index.min.js'))
     // .pipe(uglify())
@@ -52,7 +55,7 @@ gulp.task('browser-sync', function() {
 gulp.task('watch', function() {
   gulp.watch('src/scss/**/*.scss', gulp.parallel('sass'));
   gulp.watch('src/index.html', gulp.parallel('html'));
-  gulp.watch('src/templates.*.htlm', gulp.parallel('templates'));
+  gulp.watch('src/js/**/*.html', gulp.parallel('templates'));
   gulp.watch('src/js/**/*.js', gulp.parallel('scripts'));
 })
 

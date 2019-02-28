@@ -3,7 +3,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 (function () {
   const currencyConverterApp = angular.module('currencyConverterApp');
-  currencyConverterApp.value('commissions', {
+  currencyConverterApp.constant('commissions', {
     '0%': 0,
     '1%': 1,
     '2%': 2,
@@ -13,17 +13,14 @@
   });
 
 
-  currencyConverterApp.value('urlPrivate', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
-
-
-  currencyConverterApp.value('currencies', {
+  currencyConverterApp.constant('currencies', {
     UAH: {
       ccy: 'UAH', base_ccy: 'UAH', buy: 1, sale: 1,
     },
   });
 
 
-  currencyConverterApp.value('deal', {
+  currencyConverterApp.constant('deal', {
     ccyToExchange: {
       name: null,
       sum: null,
@@ -46,12 +43,12 @@
       API = apiUrl;
     };
 
-    this.$get = ['$http', 'urlPrivate', 'currencies', 'deal', function ($http, urlPrivate, currencies, deal) {
+    this.$get = ['$http', 'currencies', 'deal', function ($http, currencies, deal) {
       return {
         updatePrices: () => {
           $http({
             method: 'GET',
-            url: urlPrivate,
+            url: API,
           })
             .then((response) => {
               response.data.forEach((item) => {

@@ -18,12 +18,23 @@
   <title>Currency Converter</title>
 </head>
 
-<body>
-  <div class="container" ng-app="currencyConverterApp">
-    <currency-converter></currency-converter>
+<body ng-app="currencyConverterApp">
+  <header>
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-element" ui-sref="currency-converter" ui-sref-active="active">Currency Converter</a>
+        <a class="navbar-element" ui-sref="another" ui-sref-active="active">Google</a>
+        <a class="navbar-element" ui-sref="abc" ui-sref-active="active">Abc</a>
+      </nav>
+  </header>
+
+  <div class="container" >
+      <div ui-view>
+          <h1>Hello! Please, make your choice!</h1>
+      </div>
   </div>
 </body>
 
 <script src="js/index.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.22/angular-ui-router.js"></script>
 
 </html>
