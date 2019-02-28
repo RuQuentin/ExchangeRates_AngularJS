@@ -12,12 +12,21 @@
         .state({
           name: 'currency-converter',
           url: '/currency-converter',
-          component: 'currencyConverter',
+          templateUrl: '/components/currencyConverterComponent/currencyConverterTemplate.html',
+          controller: 'currencyController',
+          resolve: {
+            resolvedValue: currencyService => currencyService.updatePrices(),
+          },
         })
         .state({
           name: 'another',
           url: '/another',
           component: 'another',
+        })
+        .state({
+          name: 'abc',
+          url: '/abc',
+          template: '<p>abc</p>',
         });
     }])
 
