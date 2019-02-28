@@ -15,9 +15,9 @@
           component: 'currencyConverter',
         })
         .state({
-          name: '',
-          url: '',
-          templateUrl: '',
+          name: 'another',
+          url: '/another',
+          component: 'another',
         });
     }])
 
