@@ -2,11 +2,23 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
 (function () {
-  const currencyConverterApp = angular.module('currencyConverterApp', []);
+  const currencyConverterApp = angular.module('currencyConverterApp', ['ui.router']);
 
   currencyConverterApp
-    .config(['currencyServiceProvider', function (currencyServiceProvider) {
+    .config(['currencyServiceProvider', '$stateProvider', function (currencyServiceProvider, $stateProvider) {
       currencyServiceProvider.setAPI('https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+
+      $stateProvider
+        .state({
+          name: 'currency-converter',
+          url: '/currency-converter',
+          component: 'currencyConverter',
+        })
+        .state({
+          name: '',
+          url: '',
+          templateUrl: '',
+        });
     }])
 
     .run(['$window', '$rootScope', function ($window, $rootScope) {
