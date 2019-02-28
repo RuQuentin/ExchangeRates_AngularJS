@@ -33,9 +33,6 @@ gulp.task('vendor', function() {
 gulp.task('scripts', function() {
   return gulp.src([
   'src/js/app/index.js',
-  'src/js/app/controller.js',
-  'src/js/app/services.js',
-  'src/js/app/filters.js',
   'src/js/components/**/*.js',
   'src/js/directives/**/*.js'])
     // gulp.src('src/js/**/*.js')
