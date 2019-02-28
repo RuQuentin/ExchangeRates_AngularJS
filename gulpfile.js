@@ -20,8 +20,8 @@ gulp.task('html', function() {
 });
 
 gulp.task('templates', function() {
-  return gulp.src(['src/js/components/currencyConverterComponent/*.html'])
-    .pipe(gulp.dest('build/components/currencyConverterComponent/'))
+  return gulp.src(['src/js/components/**/*.html'])
+    .pipe(gulp.dest('build/components/'))
     .pipe(browserSync.reload({stream: true}))
 });
 

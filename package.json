@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Empty gulp sample for starting new projects",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.22"
+  },
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "eslint": "^5.3.0",
